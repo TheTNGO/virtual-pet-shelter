@@ -1,10 +1,12 @@
 package virtualpetshelter;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.Matchers.containsInAnyOrder;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
+import static org.hamcrest.Matchers.contains;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.junit.Before;
@@ -65,9 +67,141 @@ public class VirtualPetShelterTest {
 		Collection<String> containedPets = underTest.getPetNames();
 		assertThat(containedPets, containsInAnyOrder("Test1", "Test2"));
 	}
-	
-	@public void shouldBeAbleToFeedAllPets() {
+
+	@Test
+	public void shouldBeAbleToFeedAllPets() {
+		underTest.add(testPet1);
+		underTest.add(testPet2);
+		underTest.inputFeedAll();
+		int nutritionPet1 = testPet1.getStatNutrition();
+		int nutritionPet2 = testPet2.getStatNutrition();
+		int moodPet1 = testPet1.getStatMood();
+		int moodPet2 = testPet2.getStatMood();
+		int energyPet1 = testPet1.getStatEnergy();
+		int energyPet2 = testPet2.getStatEnergy();
 		
+		// Intended order of stats: Nutrition, Energy, Mood
+		// Refactor later by possibly making HashMap for VirtualPet Class
+		
+		Collection<Integer> stats1 = new ArrayList<>();
+		Collection<Integer> stats2 = new ArrayList<>();
+
+		stats1.add(testPet1.getStatNutrition());
+		stats1.add(testPet1.getStatMood());
+		stats1.add(testPet1.getStatEnergy());
+		stats2.add(testPet2.getStatNutrition());
+		stats2.add(testPet2.getStatMood());
+		stats2.add(testPet2.getStatEnergy());
+		
+		//Based on Starting amount 10 on all pets:
+		
+		assertThat(stats1, contains(15, 15, 15));
+		assertThat(stats2, contains(15, 15, 15));
+
+	}
+	
+	@Test
+	public void shouldBePutAllPetsToBed() {
+		underTest.add(testPet1);
+		underTest.add(testPet2);
+		underTest.inputSleepAll();
+		int nutritionPet1 = testPet1.getStatNutrition();
+		int nutritionPet2 = testPet2.getStatNutrition();
+		int moodPet1 = testPet1.getStatMood();
+		int moodPet2 = testPet2.getStatMood();
+		int energyPet1 = testPet1.getStatEnergy();
+		int energyPet2 = testPet2.getStatEnergy();
+		
+		// Intended order of stats: Nutrition, Energy, Mood
+		// Refactor later by possibly making HashMap for VirtualPet Class
+		
+		Collection<Integer> stats1 = new ArrayList<>();
+		Collection<Integer> stats2 = new ArrayList<>();
+
+		stats1.add(testPet1.getStatNutrition());
+		stats1.add(testPet1.getStatMood());
+		stats1.add(testPet1.getStatEnergy());
+		stats2.add(testPet2.getStatNutrition());
+		stats2.add(testPet2.getStatMood());
+		stats2.add(testPet2.getStatEnergy());
+		
+		//Based on Starting amount 10 on all pets:
+
+		assertThat(stats1, contains(6, 15, 15));
+		assertThat(stats2, contains(6, 15, 15));
+
+	}
+	
+	@Test
+	public void shouldPlayWithOnlyTestPet1() {
+		underTest.add(testPet1);
+		underTest.add(testPet2);
+		
+		underTest.inputPlayWithOne(testPet1);
+		
+		int nutritionPet1 = testPet1.getStatNutrition();
+		int nutritionPet2 = testPet2.getStatNutrition();
+		int moodPet1 = testPet1.getStatMood();
+		int moodPet2 = testPet2.getStatMood();
+		int energyPet1 = testPet1.getStatEnergy();
+		int energyPet2 = testPet2.getStatEnergy();
+		
+		// Intended order of stats: Nutrition, Energy, Mood
+		// Refactor later by possibly making HashMap for VirtualPet Class
+		
+		Collection<Integer> stats1 = new ArrayList<>();
+		Collection<Integer> stats2 = new ArrayList<>();
+
+		stats1.add(testPet1.getStatNutrition());
+		stats1.add(testPet1.getStatMood());
+		stats1.add(testPet1.getStatEnergy());
+		stats2.add(testPet2.getStatNutrition());
+		stats2.add(testPet2.getStatMood());
+		stats2.add(testPet2.getStatEnergy());
+		
+		//Based on Starting amount 10 on all pets:
+
+		assertThat(stats1, contains(6, 15, 6));
+		assertThat(stats2, contains(10, 10 ,10 ));
+
+	}
+	
+	@Test
+	public void shouldPlayWithOnlyTestPet2() {
+		underTest.add(testPet1);
+		underTest.add(testPet2);
+		
+		underTest.inputPlayWithOne(testPet2);
+		
+		int nutritionPet1 = testPet1.getStatNutrition();
+		int nutritionPet2 = testPet2.getStatNutrition();
+		int moodPet1 = testPet1.getStatMood();
+		int moodPet2 = testPet2.getStatMood();
+		int energyPet1 = testPet1.getStatEnergy();
+		int energyPet2 = testPet2.getStatEnergy();
+		
+		// Intended order of stats: Nutrition, Energy, Mood
+		// Refactor later by possibly making HashMap for VirtualPet Class
+		
+		Collection<Integer> stats1 = new ArrayList<>();
+		Collection<Integer> stats2 = new ArrayList<>();
+
+		stats1.add(testPet1.getStatNutrition());
+		stats1.add(testPet1.getStatMood());
+		stats1.add(testPet1.getStatEnergy());
+		stats2.add(testPet2.getStatNutrition());
+		stats2.add(testPet2.getStatMood());
+		stats2.add(testPet2.getStatEnergy());
+		
+		//Based on Starting amount 10 on all pets:
+
+		assertThat(stats1, contains(10, 10, 10));
+		assertThat(stats2, contains(6, 15, 6));
+
 	}
 
+
+
 }
+
+

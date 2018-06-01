@@ -43,8 +43,8 @@ public class VirtualPetShelter {
 
 	public void remove(VirtualPet petToBeRemoved) {
 		Set<String> cages = shelter.keySet();
-		for(String elements: cages) {
-			if(petToBeRemoved == shelter.get(elements)) {
+		for (String elements : cages) {
+			if (petToBeRemoved == shelter.get(elements)) {
 				shelter.remove(elements);
 			}
 		}
@@ -53,11 +53,41 @@ public class VirtualPetShelter {
 	public Collection<String> getPetNames() {
 		Collection<VirtualPet> pets = shelter.values();
 		List<String> petNames = new ArrayList<>();
-		for(VirtualPet elements : pets ) {
+		for (VirtualPet elements : pets) {
 			petNames.add(elements.getName());
 		}
 		return petNames;
-		
+
 	}
 
+	public void inputFeedAll() {
+		Collection<VirtualPet> pets = shelter.values();
+		for (VirtualPet elems : pets) {
+			elems.inputFeed();
+		}
+	}
+
+	public void inputSleepAll() {
+		Collection<VirtualPet> pets = shelter.values();
+		for (VirtualPet elems : pets) {
+			elems.inputSleep();
+
+		}
+	}
+
+	public void inputPlayWithOne(VirtualPet petToPlay) {
+		Collection<VirtualPet> pets = shelter.values();
+		for (VirtualPet elems : pets) {
+			if (petToPlay == elems) {
+				elems.inputPlay();
+			}
+		}
+	}
+
+	public void tick() {
+		Collection<VirtualPet> pets = shelter.values();
+		for (VirtualPet elems : pets) {
+			elems.tick();
+		}
+	}
 }

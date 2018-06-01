@@ -129,23 +129,23 @@ public class VirtualPet {
 	}
 
 	public void inputPlay() {
+		this.subtractStatNutrition(4);
 		this.addStatMood(9);
 		this.subtractStatEnergy(4);
-		this.subtractStatNutrition(4);
 	}
 
 	public void inputSleep() {
+		this.subtractStatNutrition(4);
 		this.addStatEnergy(6);
 		this.addStatMood(9);
-		this.subtractStatNutrition(4);
 	}
 
 	/* On Tick */
 
 	public void tick() {
+		this.subtractStatNutrition(1);
 		this.subtractStatMood(3);
 		this.subtractStatEnergy(1);
-		this.subtractStatNutrition(1);
 	}
 
 }
