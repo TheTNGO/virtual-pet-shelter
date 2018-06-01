@@ -3,6 +3,7 @@ package virtualpetshelter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -41,11 +42,15 @@ public class VirtualPetShelter {
 		return shelter.values();
 	}
 
-	public void remove(VirtualPet petToBeRemoved) {
-		Set<String> cages = shelter.keySet();
-		for (String elements : cages) {
-			if (petToBeRemoved == shelter.get(elements)) {
-				shelter.remove(elements);
+	public void removePet(VirtualPet petToBeRemoved) {
+		Collection<VirtualPet> pets = shelter.values();
+		Set<String> petKeys = shelter.keySet();
+		for (String elements : petKeys) {
+			for (VirtualPet activePet : pets) {
+				activePet = petToBeRemoved;
+				if (shelter.get(elements) == petToBeRemoved) {
+					shelter.remove(elements);
+				}
 			}
 		}
 	}

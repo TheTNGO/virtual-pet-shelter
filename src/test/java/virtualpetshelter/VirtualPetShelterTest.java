@@ -47,11 +47,13 @@ public class VirtualPetShelterTest {
 		underTest.add(testPet1);
 		underTest.add(testPet2);
 
-		underTest.remove(testPet2);
+		underTest.removePet(testPet2);
 
 		Collection<VirtualPet> containedPets = underTest.getShelterPetVariables();
 		assertThat(containedPets, containsInAnyOrder(testPet1));
 	}
+	
+
 
 	@Test
 	public void shouldReturnCollectionOfPets() {
