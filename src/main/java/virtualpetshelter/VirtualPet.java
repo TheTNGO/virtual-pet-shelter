@@ -29,6 +29,13 @@ public class VirtualPet {
 		return this.name;
 	}
 
+	// Description
+	
+	public String getDescription() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 	// Cage Number
 	public void setCageNumber(String cageNumber) {
 		this.cageNumber = cageNumber;
@@ -38,12 +45,6 @@ public class VirtualPet {
 		return this.cageNumber;
 	}
 
-	// Description
-
-	public String getDescription() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	// Nutrition
 
