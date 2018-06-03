@@ -27,16 +27,16 @@ public class VirtualPetShelterTest {
 
 	@Test
 	public void shouldBeAbleToAddOnePetToShelter() {
-		underTest.add(testPet1);
-		VirtualPet retrievedPet = underTest.findPet("Cage 01");
-		assertThat(retrievedPet, is(testPet1));
+		underTest.addPet(testPet1);
+		Collection<VirtualPet> petNames = underTest.getShelterPetVariables();
+		assertThat(petNames, containsInAnyOrder(testPet1));
 
 	}
 
 	@Test
 	public void shouldBeAbleToAddTwoPetsToShelter() {
-		underTest.add(testPet1);
-		underTest.add(testPet2);
+		underTest.addPet(testPet1);
+		underTest.addPet(testPet2);
 
 		Collection<VirtualPet> petNames = underTest.getShelterPetVariables();
 		assertThat(petNames, containsInAnyOrder(testPet1, testPet2));
@@ -44,8 +44,8 @@ public class VirtualPetShelterTest {
 
 	@Test
 	public void shouldBeAbleToRemovePets() {
-		underTest.add(testPet1);
-		underTest.add(testPet2);
+		underTest.addPet(testPet1);
+		underTest.addPet(testPet2);
 
 		underTest.removePet(testPet2);
 
@@ -54,11 +54,13 @@ public class VirtualPetShelterTest {
 	}
 	
 
+	
+
 
 	@Test
 	public void shouldReturnCollectionOfPets() {
-		underTest.add(testPet1);
-		underTest.add(testPet2);
+		underTest.addPet(testPet1);
+		underTest.addPet(testPet2);
 
 
 		Collection<String> containedPets = underTest.getPetNames();
@@ -67,8 +69,8 @@ public class VirtualPetShelterTest {
 
 	@Test
 	public void shouldBeAbleToFeedAllPets() {
-		underTest.add(testPet1);
-		underTest.add(testPet2);
+		underTest.addPet(testPet1);
+		underTest.addPet(testPet2);
 		underTest.inputFeedAll();
 
 		
@@ -94,8 +96,8 @@ public class VirtualPetShelterTest {
 	
 	@Test
 	public void shouldBePutAllPetsToBed() {
-		underTest.add(testPet1);
-		underTest.add(testPet2);
+		underTest.addPet(testPet1);
+		underTest.addPet(testPet2);
 		underTest.inputSleepAll();
 
 		
@@ -121,8 +123,8 @@ public class VirtualPetShelterTest {
 	
 	@Test
 	public void shouldPlayWithOnlyTestPet1() {
-		underTest.add(testPet1);
-		underTest.add(testPet2);
+		underTest.addPet(testPet1);
+		underTest.addPet(testPet2);
 		
 		underTest.inputPlayWithOne(testPet1);
 		
@@ -149,8 +151,8 @@ public class VirtualPetShelterTest {
 	
 	@Test
 	public void shouldPlayWithOnlyTestPet2() {
-		underTest.add(testPet1);
-		underTest.add(testPet2);
+		underTest.addPet(testPet1);
+		underTest.addPet(testPet2);
 		
 		underTest.inputPlayWithOne(testPet2);
 
@@ -177,8 +179,8 @@ public class VirtualPetShelterTest {
 	@Test
 	public void shelterTickDegradesAllPetsStats() {
 		
-		underTest.add(testPet1);
-		underTest.add(testPet2);
+		underTest.addPet(testPet1);
+		underTest.addPet(testPet2);
 		
 		underTest.tick();
 

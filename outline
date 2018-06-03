@@ -1,0 +1,45 @@
+=========
+Item Class
+=========
+
+(x) * Instance variables
+
+	(x) Name
+	(x) Price
+	(x) Quantity
+
+
+(x) * Constructor
+
+	(x) Name
+	(x) Price
+	(x) Quantity
+
+(x) * Accessor Methods
+	
+	(x) Name
+	(x) Price
+	(x) Quantity
+
+(x) * toString Summary
+
+=============
+ShopApp Class
+=============
+
+* ArrayList (Items in cart)
+	* Should hold Item instances
+	* Name: Items
+
+
+* Loop to simulate shopping
+	* Input PER ITEM
+		() Name
+		() Price
+		() Qty
+
+* Display current Cart
+
+* Ask to continue shopping
+	* YES: Iterate again
+	* NO: Quit with message

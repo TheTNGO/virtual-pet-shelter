@@ -10,55 +10,28 @@ import java.util.Set;
 
 public class VirtualPetShelter {
 
-	Map<String, VirtualPet> shelter = new HashMap<>();
+	List<VirtualPet> shelter = new ArrayList<>();
 
-	public void add(VirtualPet pet) {
+	public void addPet(VirtualPet pet) {
 
-		// Assigning Cage Number
+		shelter.add(pet);
 
-		String cageNumberBeingAssigned;
-		if (shelter.size() < 10) {
-			cageNumberBeingAssigned = "Cage 0" + (shelter.size() + 1);
-		} else {
-			cageNumberBeingAssigned = "Cage " + (shelter.size() + 1);
-		}
-
-		// Adding pet to shelter
-
-		pet.setCageNumber(cageNumberBeingAssigned);
-		shelter.put(pet.getCageNumber(), pet);
-
-	}
-
-	public VirtualPet findPet(String cageNumber) {
-		return shelter.get(cageNumber);
-	}
-
-	public Set returnShelters() {
-		return this.shelter.entrySet();
-	}
-
-	public Collection<VirtualPet> getShelterPetVariables() {
-		return shelter.values();
 	}
 
 	public void removePet(VirtualPet petToBeRemoved) {
-		Collection<VirtualPet> pets = shelter.values();
-		Set<String> petKeys = shelter.keySet();
-		for (String elements : petKeys) {
-			for (VirtualPet activePet : pets) {
-				activePet = petToBeRemoved;
-				if (shelter.get(elements) == petToBeRemoved) {
-					shelter.remove(elements);
-				}
+		List<VirtualPet> toRemove = new ArrayList<>();
+		for (VirtualPet elements : shelter) {
+			if (petToBeRemoved == elements) {
+				toRemove.add(elements);
 			}
 		}
+		
+		shelter.removeAll(toRemove);
 	}
 
 	public Collection<String> getPetNames() {
-		Collection<VirtualPet> pets = shelter.values();
 		List<String> petNames = new ArrayList<>();
-		for (VirtualPet elements : pets) {
+		for (VirtualPet elements : shelter) {
 			petNames.add(elements.getName());
 		}
 		return petNames;
@@ -66,23 +39,22 @@ public class VirtualPetShelter {
 	}
 
 	public void inputFeedAll() {
-		Collection<VirtualPet> pets = shelter.values();
-		for (VirtualPet elems : pets) {
+		for (VirtualPet elems : shelter) {
 			elems.inputFeed();
 		}
 	}
 
 	public void inputSleepAll() {
-		Collection<VirtualPet> pets = shelter.values();
-		for (VirtualPet elems : pets) {
+
+		for (VirtualPet elems : shelter) {
 			elems.inputSleep();
 
 		}
 	}
 
 	public void inputPlayWithOne(VirtualPet petToPlay) {
-		Collection<VirtualPet> pets = shelter.values();
-		for (VirtualPet elems : pets) {
+		
+		for (VirtualPet elems : shelter) {
 			if (petToPlay == elems) {
 				elems.inputPlay();
 			}
@@ -90,9 +62,12 @@ public class VirtualPetShelter {
 	}
 
 	public void tick() {
-		Collection<VirtualPet> pets = shelter.values();
-		for (VirtualPet elems : pets) {
+		for (VirtualPet elems : shelter) {
 			elems.tick();
 		}
+	}
+
+	public Collection<VirtualPet> getShelterPetVariables() {
+		return shelter;
 	}
 }

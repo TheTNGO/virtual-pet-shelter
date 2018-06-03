@@ -1,6 +1,8 @@
 package virtualpetshelter;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Scanner;
 
 public class VirtualPetShelterApp {
@@ -21,9 +23,11 @@ public class VirtualPetShelterApp {
 
 		/* Default entries into shelter */
 
-		currentShelter.add(pet1);
-		currentShelter.add(pet2);
-		currentShelter.add(pet3);
+		currentShelter.addPet(pet1);
+		currentShelter.addPet(pet2);
+		currentShelter.addPet(pet3);
+
+		currentShelter.toString();
 
 		/* Intro */
 
@@ -37,9 +41,12 @@ public class VirtualPetShelterApp {
 
 			Collection<VirtualPet> pets = currentShelter.getShelterPetVariables();
 
+			System.out.println(pets);
+
 			for (VirtualPet currentPet : pets) {
-				System.out.println(currentPet.getName() + "\t\tNutrition: " + currentPet.getStatNutrition()
-						+ "\t\t\tEnergy: " + currentPet.getStatEnergy() + "\t\t\tMood: " + currentPet.getStatMood());
+				System.out.println("Cage Number: " + currentPet.getCageNumber() + " " + currentPet.getName()
+						+ "\t\tNutrition: " + currentPet.getStatNutrition() + "\t\t\tEnergy: "
+						+ currentPet.getStatEnergy() + "\t\t\tMood: " + currentPet.getStatMood());
 			}
 
 			System.out.println("\nYou have room for " + (5 - pets.size()) + " more pets");
@@ -131,52 +138,56 @@ public class VirtualPetShelterApp {
 
 					if (pets.size() == 0) {
 						pet1 = new VirtualPet(newPetName, newPetDescription);
-						currentShelter.add(pet1);
+						currentShelter.addPet(pet1);
 					} else if (pets.size() == 1) {
 						pet2 = new VirtualPet(newPetName, newPetDescription);
-						currentShelter.add(pet2);
+						currentShelter.addPet(pet2);
 					} else if (pets.size() == 2) {
 						pet3 = new VirtualPet(newPetName, newPetDescription);
-						currentShelter.add(pet3);
+						currentShelter.addPet(pet3);
 					} else if (pets.size() == 3) {
 						pet4 = new VirtualPet(newPetName, newPetDescription);
-						currentShelter.add(pet4);
+						currentShelter.addPet(pet4);
 					} else if (pets.size() == 4) {
 						pet5 = new VirtualPet(newPetName, newPetDescription);
-						currentShelter.add(pet5);
+						currentShelter.addPet(pet5);
 					}
 
 					System.out.println("\nLooks like " + newPetName + " is ready to make some new friends!\n");
 				}
+			}
 
-				
-			// Release Pet	
-			} else if (choice.equalsIgnoreCase("6")) {
-				
+			// Release Pet
+			else if (choice.equalsIgnoreCase("6")) {
+
 				System.out.println("Which pet do you want to release? (Type its name)");
 				String releasingPet = input.nextLine();
 
-				// Cycling through current pets to find the one to release (with happy ending)
-				for (VirtualPet activePet : pets) {
+				List<VirtualPet> toRemove = new ArrayList<>();
+				for (VirtualPet activePet : currentShelter.getShelterPetVariables()) {
 					if (activePet.getName().equalsIgnoreCase(releasingPet)) {
-						currentShelter.tick();
-						System.out.println("\nAs you stop to take a look at " + activePet.getName() + ", a happy family walks in and decides to adopt it on the spot!");
+						toRemove.add(activePet);
+						System.out.println("\nAs you stop to take a look at " + activePet.getName()
+								+ ", a happy family walks in and decides to adopt it on the spot!");
 						System.out.println("You're glad to see it go. He was getting on your nerves anyway. *sniff*\n");
-						currentShelter.removePet(activePet);
 					}
+
 				}
-			
+
+				currentShelter.getShelterPetVariables().removeAll(toRemove);
+
+			}
+
 			// Quit
-			} else if (choice.equalsIgnoreCase("7")) {
+			else if (choice.equalsIgnoreCase("7")) {
 				System.out.println("\nTime to clock out! Nice treats from your relief await!");
 				input.close();
 				System.exit(0);
+
+				continue;
 			}
 
-			continue;
-
 		}
-
 	}
 
 }
